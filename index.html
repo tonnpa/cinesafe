@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineSafe – Content Warning and Accessibility Dataset</title>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.7;
+        color: #222;
+        max-width: 1000px;
+        margin: auto;
+        padding: 40px;
+        background: #fafafa;
+    }
+
+    h1, h2, h3 {
+        color: #1b4d7a;
+    }
+
+    h1 {
+        border-bottom: 4px solid #1b4d7a;
+        padding-bottom: 10px;
+    }
+
+    section {
+        background: white;
+        padding: 24px;
+        margin: 24px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .badge {
+        display: inline-block;
+        background: #e8f2ff;
+        color: #1b4d7a;
+        padding: 6px 12px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th {
+        background: #1b4d7a;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    code, pre {
+        background: #f4f4f4;
+        border-radius: 6px;
+    }
+
+    pre {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .architecture {
+        background: #f5f9ff;
+        border-left: 5px solid #1b4d7a;
+        padding: 20px;
+        font-family: monospace;
+        white-space: pre;
+    }
+
+    ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+</style>
+</head>
+<body>
+
+<h1>CineSafe</h1>
+<h2>Building a Content Warning and Accessibility Dataset for Movies</h2>
+
+<div>
+    <span class="badge">Data Engineering</span>
+    <span class="badge">Natural Language Processing</span>
+    <span class="badge">Machine Learning</span>
+    <span class="badge">Accessibility</span>
+    <span class="badge">Social Good</span>
+</div>
+
+<section>
+<h2>1. Project Overview</h2>
+
+<p>
+Movie platforms typically provide only broad ratings such as PG-13 or R.
+These ratings often fail to address the needs of:
+</p>
+
+<ul>
+    <li>Parents selecting movies for children</li>
+    <li>People with PTSD or trauma triggers</li>
+    <li>People sensitive to flashing lights</li>
+    <li>People with sensory sensitivities</li>
+    <li>Deaf and visually impaired viewers</li>
+</ul>
+
+<p>
+For example, a viewer may be comfortable with an R-rated film but wish to avoid:
+</p>
+
+<ul>
+    <li>Sexual assault scenes</li>
+    <li>Self-harm content</li>
+    <li>Animal cruelty</li>
+    <li>Excessive jump scares</li>
+    <li>Strobe effects</li>
+</ul>
+
+<p>
+Similarly, a visually impaired viewer may specifically need:
+</p>
+
+<ul>
+    <li>Audio descriptions</li>
+    <li>Closed captions</li>
+</ul>
+
+<p>
+CineSafe aims to automatically generate detailed content warnings and accessibility metadata for movies.
+</p>
+</section>
+
+<section>
+<h2>2. Research Question</h2>
+
+<blockquote>
+Can machine learning automatically generate meaningful content warnings and accessibility metadata from existing movie information?
+</blockquote>
+</section>
+
+<section>
+<h2>3. Project Objectives</h2>
+
+<ol>
+    <li>Create an augmented movie dataset.</li>
+    <li>Build machine learning models that predict content warnings.</li>
+    <li>Develop accessibility metadata.</li>
+    <li>Create a personalized recommendation engine.</li>
+    <li>Provide an interactive dashboard for end users.</li>
+</ol>
+</section>
+
+<section>
+<h2>4. Dataset Design</h2>
+
+<h3>Base Dataset Sources</h3>
+
+<ul>
+    <li>MovieLens</li>
+    <li>IMDb metadata</li>
+    <li>TMDb metadata</li>
+    <li>Movie subtitle datasets</li>
+</ul>
+
+<h3>Base Features</h3>
+
+<ul>
+    <li>Title</li>
+    <li>Genres</li>
+    <li>Overview</li>
+    <li>Release year</li>
+    <li>Runtime</li>
+    <li>Cast</li>
+    <li>Keywords</li>
+    <li>User ratings</li>
+</ul>
+</section>
+
+<section>
+<h2>5. Content Warning Labels</h2>
+
+<table>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+<tr><td>violence</td><td>Physical violence</td></tr>
+<tr><td>gore</td><td>Graphic injuries</td></tr>
+<tr><td>death</td><td>Character death</td></tr>
+<tr><td>suicide</td><td>Self-harm or suicide</td></tr>
+<tr><td>sexual_content</td><td>Sexual scenes</td></tr>
+<tr><td>sexual_assault</td><td>Sexual violence</td></tr>
+<tr><td>child_abuse</td><td>Abuse involving children</td></tr>
+<tr><td>domestic_abuse</td><td>Domestic violence</td></tr>
+<tr><td>drug_use</td><td>Drug use</td></tr>
+<tr><td>alcohol_use</td><td>Alcohol use</td></tr>
+<tr><td>animal_cruelty</td><td>Harm to animals</td></tr>
+<tr><td>racism</td><td>Racial discrimination or slurs</td></tr>
+<tr><td>bullying</td><td>Bullying scenes</td></tr>
+<tr><td>torture</td><td>Torture scenes</td></tr>
+<tr><td>flashing_lights</td><td>Strobe or flashing sequences</td></tr>
+<tr><td>jump_scares</td><td>Frequent jump scares</td></tr>
+</table>
+</section>
+
+<section>
+<h2>6. Accessibility Labels</h2>
+
+<table>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+<tr><td>subtitles_available</td><td>Closed captions available</td></tr>
+<tr><td>audio_description</td><td>Audio narration available</td></tr>
+<tr><td>sign_language</td><td>Sign language support</td></tr>
+<tr><td>low_dialogue</td><td>Minimal spoken content</td></tr>
+<tr><td>foreign_language</td><td>Requires subtitles</td></tr>
+</table>
+</section>
+
+<section>
+<h2>7. Intensity Scores</h2>
+
+<pre>
+0 = None
+1 = Mild
+2 = Moderate
+3 = Severe
+</pre>
+
+<table>
+<tr>
+<th>Movie</th>
+<th>Violence</th>
+<th>Gore</th>
+<th>Flashing Lights</th>
+</tr>
+<tr>
+<td>Toy Story</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Jurassic Park</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Saw</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</table>
+</section>
+
+<section>
+<h2>8. Dataset Augmentation Pipeline</h2>
+
+<ol>
+    <li>Collect movie metadata.</li>
+    <li>Collect subtitles.</li>
+    <li>Manually annotate 300–500 movies.</li>
+    <li>Train machine learning models.</li>
+    <li>Generate labels for the full dataset.</li>
+    <li>Build recommendation and dashboard systems.</li>
+</ol>
+</section>
+
+<section>
+<h2>9. Feature Engineering</h2>
+
+<h3>Metadata Features</h3>
+
+<ul>
+    <li>Genres</li>
+    <li>Keywords</li>
+    <li>Runtime</li>
+    <li>Plot summaries</li>
+</ul>
+
+<h3>NLP Features</h3>
+
+<ul>
+    <li>Word frequency analysis</li>
+    <li>Sentiment analysis</li>
+    <li>Emotion analysis</li>
+    <li>Topic modeling</li>
+    <li>Subtitle embeddings</li>
+</ul>
+
+<pre>
+kill
+blood
+gun
+murder
+rape
+drug
+</pre>
+</section>
+
+<section>
+<h2>10. Machine Learning Problem</h2>
+
+<p>
+The project is formulated as a multi-label classification problem.
+</p>
+
+<pre>
+Input:
+Movie Metadata + Subtitles
+
+Output:
+Content Warnings + Accessibility Labels
+</pre>
+
+<h3>Models</h3>
+
+<ul>
+    <li>Logistic Regression</li>
+    <li>Random Forest</li>
+    <li>XGBoost</li>
+    <li>Fine-tuned BERT</li>
+</ul>
+</section>
+
+<section>
+<h2>11. Evaluation Metrics</h2>
+
+<ul>
+    <li>Precision</li>
+    <li>Recall</li>
+    <li>F1 Score</li>
+    <li>Hamming Loss</li>
+    <li>AUROC</li>
+</ul>
+</section>
+
+<section>
+<h2>12. Recommendation Engine</h2>
+
+<pre>
+User Preferences:
+{
+  "avoid": [
+    "sexual_assault",
+    "animal_cruelty",
+    "flashing_lights"
+  ]
+}
+
+Output:
+Safe movie recommendations
+</pre>
+</section>
+
+<section>
+<h2>13. Interactive Dashboard</h2>
+
+<p>Example search:</p>
+
+<pre>
+Interstellar
+</pre>
+
+<p>Results:</p>
+
+<pre>
+Violence: Mild
+Death: Moderate
+Flashing Lights: Low
+Subtitles: Yes
+Audio Description: Yes
+</pre>
+</section>
+
+<section>
+<h2>14. Visualization Ideas</h2>
+
+<ul>
+    <li>Heatmaps of genres versus triggers</li>
+    <li>Historical trends of trigger prevalence</li>
+    <li>Correlation matrices between content warnings</li>
+</ul>
+</section>
+
+<section>
+<h2>15. Social Impact</h2>
+
+<ul>
+    <li>Helps people avoid triggering content.</li>
+    <li>Improves accessibility for disabled viewers.</li>
+    <li>Assists parents in selecting appropriate movies.</li>
+    <li>Creates richer metadata than existing rating systems.</li>
+</ul>
+</section>
+
+<section>
+<h2>16. System Architecture</h2>
+
+<div class="architecture">
+Movie Metadata
+        +
+     Subtitles
+        +
+ Feature Engineering
+        +
+Multi-label Classifier
+        +
+ Augmented Dataset
+        +
+Recommendation Engine
+        +
+ Interactive Dashboard
+</div>
+</section>
+
+<section>
+<h2>17. Why This Project Matters</h2>
+
+<p>
+CineSafe combines data engineering, natural language processing,
+machine learning, accessibility research, and human-centered design
+to address a real-world problem that is not adequately solved by
+existing movie rating systems.
+</p>
+</section>
+
+<div class="footer">
+CineSafe Project Proposal • School Project Artifact • 2026
+</div>
+
+</body>
+</html>
